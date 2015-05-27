@@ -13,8 +13,8 @@ class token {
 		
 		token(string iname, string ivalue, int iline){
 			name = iname;
-			ivalue = tokentype;
-			iline = linenum;
+			tokentype = ivalue;
+			linenum = iline;
 			
 		};
 	

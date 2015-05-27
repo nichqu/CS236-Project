@@ -37,9 +37,9 @@ class lexicalanalyzer {
 					cstate = comma;
 					token *temp = new token("COMMA", ",", linenum);
 					tokenlist.push_back(temp);
-					cout << "Test\n";
-					cout << tokenlist.tostring(tokens) << endl;
-					cout << "End Test\n";
+					
+					//cout << tokenlist[tokens-1] << endl;
+					
 					//cout << "(COMMA,\",\"," << linenum << ")\n";
 					tokens++;
 					cstate = start;
@@ -49,7 +49,7 @@ class lexicalanalyzer {
 					cstate = period;
 					token *temp = new token("PERIOD", ".", linenum);
 					tokenlist.push_back(temp);
-					cout << tokenlist.tostring(tokens) << endl;
+					//cout << &tokenlist[tokens-1] << endl;
 					//cout << "(PERIOD,\".\"," << linenum << ")\n";
 					tokens++;
 					cstate = start;
@@ -59,7 +59,7 @@ class lexicalanalyzer {
 					cstate = qmark;
 					token *temp = new token("Q-MARK", "?", linenum);
 					tokenlist.push_back(temp);
-					cout << tokenlist.tostring(tokens) << endl;
+					//cout << &tokenlist[tokens-1] << endl;
 					//cout << "(Q-MARK,\"?\"," << linenum << ")\n";
 					tokens++;
 					cstate = start;
@@ -68,7 +68,7 @@ class lexicalanalyzer {
 					cstate = lparen;
 					token *temp = new token("LEFT_PAREN", "(", linenum);
 					tokenlist.push_back(temp);
-					cout << tokenlist.tostring(tokens) << endl;
+					//cout << &tokenlist[tokens-1] << endl;
 					//cout << "(LEFT_PAREN,\"(\"," << linenum << ")\n";
 					tokens++;
 					cstate = start;
@@ -77,7 +77,7 @@ class lexicalanalyzer {
 					cstate = rparen;
 					token *temp = new token("RIGHT_PAREN", ")", linenum);
 					tokenlist.push_back(temp);
-					cout << tokenlist.tostring(tokens) << endl;
+					//cout << &tokenlist[tokens-1] << endl;
 					//cout << "(RIGHT_PAREN,\")\"," << linenum << ")\n";
 					tokens++;
 					cstate = start;
@@ -87,7 +87,7 @@ class lexicalanalyzer {
 						cstate = colon_dash;
 						token *temp = new token("COLON_DASH", ":-", linenum);
 						tokenlist.push_back(temp);
-						cout << tokenlist.tostring(tokens) << endl;
+						//cout << &tokenlist[tokens-1] << endl;
 						//cout << "(COLON_DASH,\":-\"," << linenum << ")\n";
 						tokens++;
 						i++;
@@ -97,7 +97,7 @@ class lexicalanalyzer {
 						cstate = colon;
 						token *temp = new token("COLON", ":", linenum);
 						tokenlist.push_back(temp);
-						cout << tokenlist.tostring(tokens) << endl;
+						//cout << &tokenlist[tokens-1] << endl;
 						//cout << "(COLON,\":\"," << linenum << ")\n";
 						tokens++;
 						cstate = start;
@@ -163,10 +163,14 @@ class lexicalanalyzer {
 						i++;
 					}
 					if (in.eof()){
-						cout << "(UNDEFINED,\"" << temp1 << "\"," << templine << ")\n";
+						token *temp = new token("UNDEFINED", temp1, templine);
+						tokenlist.push_back(temp);
+						//cout << "(UNDEFINED,\"" << temp1 << "\"," << templine << ")\n";
 						break;
 					}
-					cout << "(STRING,\"" << temp1 << "\"," << templine << ")\n";
+					token *temp = new token("STRING", temp1 , templine);
+					tokenlist.push_back(temp);
+					//cout << "(STRING,\"" << temp1 << "\"," << templine << ")\n";
 					tokens++;
 					//cstate = start;
 					
@@ -206,10 +210,14 @@ class lexicalanalyzer {
 						}
 					}
 					if (in.eof()){
+						token *tempt = new token("UNDEFINED", temp , templine);
+						tokenlist.push_back(tempt);
 						cout << "(UNDEFINED,\"" << temp << "\"," << templine << ")\n";
 						break;
 					}
 					tokens++;
+					token *tempt = new token("COMMENT", temp , templine);
+					tokenlist.push_back(tempt);
 					cout << "(COMMENT,\"" << temp << "\"," << templine << ")\n";
 
 				}
@@ -222,31 +230,41 @@ class lexicalanalyzer {
 					}
 					if (temp == "Schemes"){
 						cstate = SCHEMES;
-						cout << "(SCHEMES,\"Schemes\"," << linenum << ")\n";
+						token *tempt = new token("SCHEMES", "Schemes" , linenum);
+						tokenlist.push_back(tempt);
+						//cout << "(SCHEMES,\"Schemes\"," << linenum << ")\n";
 						tokens++;
 
 					}
 					else if (temp == "Facts"){
 						cstate = FACTS;
-						cout << "(FACTS,\"Facts\"," << linenum << ")\n";
+						token *tempt = new token("FACTS", "Facts", linenum);
+						tokenlist.push_back(tempt);
+						//cout << "(FACTS,\"Facts\"," << linenum << ")\n";
 						tokens++;
 
 					}
 					else if (temp == "Rules"){
 						cstate = RULES;
-						cout << "(RULES,\"Rules\"," << linenum << ")\n";
+						token *tempt = new token("RULES", "Rules", linenum);
+						tokenlist.push_back(tempt);
+						//cout << "(RULES,\"Rules\"," << linenum << ")\n";
 						tokens++;
 
 					}
 					else if (temp == "Queries"){
 						cstate = QUERIES;
-						cout << "(QUERIES,\"Queries\"," << linenum << ")\n";
+						token *tempt = new token("QUERIES", "Queries", linenum);
+						tokenlist.push_back(tempt);
+						//cout << "(QUERIES,\"Queries\"," << linenum << ")\n";
 						tokens++;
 
 					}
 					else{
 						cstate = ID;
-						cout << "(ID,\"" << temp << "\"," << linenum << ")\n";
+						token *tempt = new token("ID", temp , linenum);
+						tokenlist.push_back(tempt);
+						//cout << "(ID,\"" << temp << "\"," << linenum << ")\n";
 						tokens++;
 
 					}
@@ -254,9 +272,12 @@ class lexicalanalyzer {
 				}
 
 				else if (!isspace(c)) {
-
+					string temp;
+					temp.push_back(c);
 					cstate = UNDEFINED;
-					cout << "(UNDEFINED,\"" << c << "\"," << linenum << ")\n";
+					token *tempt = new token("UNDEFINED", temp , linenum);
+					tokenlist.push_back(tempt);
+					//cout << "(UNDEFINED,\"" << c << "\"," << linenum << ")\n";
 					tokens++;
 					cstate = start;
 
@@ -274,7 +295,8 @@ class lexicalanalyzer {
 			tokens++;
 		}
 	}
-	cout << "(EOF,\"\"," << linenum << ")\n";
-	cout << "Total Tokens = " << tokens << endl;
+
+	//cout << "(EOF,\"\"," << linenum << ")\n";
+	//cout << "Total Tokens = " << tokens << endl;
 	};
 };
