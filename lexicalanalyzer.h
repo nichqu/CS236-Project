@@ -38,7 +38,7 @@ class lexicalanalyzer {
 					token *temp = new token("COMMA", ",", linenum);
 					tokenlist.push_back(temp);
 					cout << "Test\n";
-					cout << tokenlist[tokens] << endl;
+					//cout << tokenlist[tokens] << endl;
 					cout << "End Test\n";
 					//cout << "(COMMA,\",\"," << linenum << ")\n";
 					tokens++;

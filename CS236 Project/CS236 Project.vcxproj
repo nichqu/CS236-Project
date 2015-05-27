@@ -17,6 +17,9 @@
   <ItemGroup>
     <ClCompile Include="..\main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\..\Desktop\goodtest.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{74C00CF0-DE20-4010-AB6E-99578C86147F}</ProjectGuid>
     <RootNamespace>CS236Project</RootNamespace>
