@@ -38,7 +38,7 @@ class lexicalanalyzer {
 					token *temp = new token("COMMA", ",", linenum);
 					tokenlist.push_back(temp);
 					cout << "Test\n";
-					//cout << tokenlist[tokens] << endl;
+					cout << tokenlist.tostring(tokens) << endl;
 					cout << "End Test\n";
 					//cout << "(COMMA,\",\"," << linenum << ")\n";
 					tokens++;
@@ -47,44 +47,63 @@ class lexicalanalyzer {
 				
 				else if (c == '.'){
 					cstate = period;
-					cout << "(PERIOD,\".\"," << linenum << ")\n";
+					token *temp = new token("PERIOD", ".", linenum);
+					tokenlist.push_back(temp);
+					cout << tokenlist.tostring(tokens) << endl;
+					//cout << "(PERIOD,\".\"," << linenum << ")\n";
 					tokens++;
 					cstate = start;
 				}
 
 				else if (c == '?'){
 					cstate = qmark;
-					cout << "(Q-MARK,\"?\"," << linenum << ")\n";
+					token *temp = new token("Q-MARK", "?", linenum);
+					tokenlist.push_back(temp);
+					cout << tokenlist.tostring(tokens) << endl;
+					//cout << "(Q-MARK,\"?\"," << linenum << ")\n";
 					tokens++;
 					cstate = start;
 				}
 				else if (c == '('){
 					cstate = lparen;
-					cout << "(LEFT_PAREN,\"(\"," << linenum << ")\n";
+					token *temp = new token("LEFT_PAREN", "(", linenum);
+					tokenlist.push_back(temp);
+					cout << tokenlist.tostring(tokens) << endl;
+					//cout << "(LEFT_PAREN,\"(\"," << linenum << ")\n";
 					tokens++;
 					cstate = start;
 				}
 				else if (c == ')'){
 					cstate = rparen;
-					cout << "(RIGHT_PAREN,\")\"," << linenum << ")\n";
+					token *temp = new token("RIGHT_PAREN", ")", linenum);
+					tokenlist.push_back(temp);
+					cout << tokenlist.tostring(tokens) << endl;
+					//cout << "(RIGHT_PAREN,\")\"," << linenum << ")\n";
 					tokens++;
 					cstate = start;
 				}
 				else if (c == ':'){
 					if (line[i + 1] == '-'){
 						cstate = colon_dash;
-						cout << "(COLON_DASH,\":-\"," << linenum << ")\n";
+						token *temp = new token("COLON_DASH", ":-", linenum);
+						tokenlist.push_back(temp);
+						cout << tokenlist.tostring(tokens) << endl;
+						//cout << "(COLON_DASH,\":-\"," << linenum << ")\n";
 						tokens++;
 						i++;
 						cstate = start;
 					}
 					else{
 						cstate = colon;
-						cout << "(COLON,\":\"," << linenum << ")\n";
+						token *temp = new token("COLON", ":", linenum);
+						tokenlist.push_back(temp);
+						cout << tokenlist.tostring(tokens) << endl;
+						//cout << "(COLON,\":\"," << linenum << ")\n";
 						tokens++;
 						cstate = start;
 					}
 				}
+				//PORGRAM STRINGS TO TOKENLIST
 				else if (c == '\''){
 					cstate = STRING;
 					string temp1;
