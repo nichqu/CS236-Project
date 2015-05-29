@@ -103,7 +103,7 @@ class lexicalanalyzer {
 						cstate = start;
 					}
 				}
-				//PORGRAM STRINGS TO TOKENLIST
+				
 				else if (c == '\''){
 					cstate = STRING;
 					string temp1;
@@ -137,27 +137,7 @@ class lexicalanalyzer {
 							
 							}
 						}
-					/*if (line[i] == '\'' && line[i + 1] == '\''){
-						temp.push_back(line[i]);
-						i += 2;
-						while (line[i] != '\''){
-
-							temp.push_back(line[i]);
-							if (line[i] == NULL){
-								getline(in, line);
-								linenum++;
-								i = -1;
-							}
-							i++;
-							if (in.eof()){
-								cstate = end;
-								tokens++;
-
-								break;
-							}
-
-						}
-					}*/
+					
 					else{
 						temp1 += line[i];
 						i++;
@@ -210,15 +190,15 @@ class lexicalanalyzer {
 						}
 					}
 					if (in.eof()){
-						token *tempt = new token("UNDEFINED", temp , templine);
-						tokenlist.push_back(tempt);
-						cout << "(UNDEFINED,\"" << temp << "\"," << templine << ")\n";
+						//token *tempt = new token("UNDEFINED", temp , templine);
+						//tokenlist.push_back(tempt);
+						//cout << "(UNDEFINED,\"" << temp << "\"," << templine << ")\n";
 						break;
 					}
 					tokens++;
-					token *tempt = new token("COMMENT", temp , templine);
-					tokenlist.push_back(tempt);
-					cout << "(COMMENT,\"" << temp << "\"," << templine << ")\n";
+					//token *tempt = new token("COMMENT", temp , templine);
+					//tokenlist.push_back(tempt);
+					//cout << "(COMMENT,\"" << temp << "\"," << templine << ")\n";
 
 				}
 
