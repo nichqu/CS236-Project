@@ -19,9 +19,9 @@ class lexicalanalyzer {
 
 	states cstate;
 	public:
-	vector<token*> tokenlist;
 	
-	void analyze(ifstream &in){
+	
+	void analyze(ifstream &in, vector<token*> &tokenlist){
 	cstate = start;
 
 	while (cstate != endn){
@@ -130,7 +130,7 @@ class lexicalanalyzer {
 						}
 
 					}
-					if(line[i-1] == '\'' && line[i] == '\'' && line[i] != NULL){
+					if(line[i+1] == '\'' && line[i] == '\'' && line[i] != NULL){
 						while(line[i] == '\''){
 							temp1+=line[i];
 							i++;
@@ -276,6 +276,7 @@ class lexicalanalyzer {
 		}
 	}
 
+	
 	//cout << "(EOF,\"\"," << linenum << ")\n";
 	//cout << "Total Tokens = " << tokens << endl;
 	};
