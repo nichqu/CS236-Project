@@ -12,6 +12,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lexicalanalyzer.h" />
+    <ClInclude Include="..\parameter.h" />
+    <ClInclude Include="..\rule.h" />
     <ClInclude Include="..\token.h" />
   </ItemGroup>
   <ItemGroup>
