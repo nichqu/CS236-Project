@@ -28,7 +28,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\..\Desktop\goodtest.txt">
+    <Text Include="..\goodtest.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

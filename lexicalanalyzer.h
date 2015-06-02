@@ -129,16 +129,23 @@ class lexicalanalyzer {
 							break;
 						}
 						cstate = STRING;
-						//if (line[i - 1] == '\'' && line[i] == '\'' && line[i] != NULL) {
-						while (line[i] == '\'' && (line[i + 1] == '\'' || line[i - 1] == '\'')) {
+						if (line[i] == '\'' && line[i+1] == '\'') {
+							bool b = true;
+						while (b == true) {
 								temp1 += line[i];
 								i++;
-								if (line[i] == NULL) {
-									break;
+								if (line[i] != '\'' && line[i - 1] == '\'') {
+									b = false;
 								}
+								
 							}
 							//cstate = start;
-						//}
+						}
+						if (line[i] == NULL && line[i-1] == '\'') {
+							cstate = start;
+							
+							break;
+						}
 						
 
 					} while (line[i] != '\'');
@@ -149,7 +156,8 @@ class lexicalanalyzer {
 						i++;
 					}
 					else {
-						cstate = start;
+						temp1 += line[i];
+						cstate = STRING;
 					}
 					if (in.eof()){
 						token *temp = new token("UNDEFINED", temp1, templine);
