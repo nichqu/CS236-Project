@@ -112,35 +112,44 @@ class lexicalanalyzer {
 					i++;
 					templine = linenum;
 					
-					while (line[i] != '\''){
-						
-						temp1+=line[i];
-						if (line[i] == NULL){
+					do {
+
+						temp1 += line[i];
+						if (line[i] == NULL) {
 							getline(in, line);
-							temp1+="\n";
+							temp1 += "\n";
 							linenum++;
 							i = -1;
 						}
 						i++;
-						if (in.eof()){
+						if (in.eof()) {
 							cstate = endn;
 							tokens++;
 
 							break;
 						}
-
-					}
-					if(line[i+1] == '\'' && line[i] == '\'' && line[i] != NULL){
-						while(line[i] == '\''){
-							temp1+=line[i];
-							i++;
-							
+						cstate = STRING;
+						//if (line[i - 1] == '\'' && line[i] == '\'' && line[i] != NULL) {
+						while (line[i] == '\'' && (line[i + 1] == '\'' || line[i - 1] == '\'')) {
+								temp1 += line[i];
+								i++;
+								if (line[i] == NULL) {
+									break;
+								}
 							}
-						}
+							//cstate = start;
+						//}
+						
+
+					} while (line[i] != '\'');
 					
-					else{
+					
+					if(cstate == STRING){
 						temp1 += line[i];
 						i++;
+					}
+					else {
+						cstate = start;
 					}
 					if (in.eof()){
 						token *temp = new token("UNDEFINED", temp1, templine);
