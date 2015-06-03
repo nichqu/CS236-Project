@@ -15,6 +15,8 @@
     <ClInclude Include="..\parameter.h" />
     <ClInclude Include="..\rule.h" />
     <ClInclude Include="..\token.h" />
+    <ClInclude Include="datalog.h" />
+    <ClInclude Include="parser.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\main.cpp" />
