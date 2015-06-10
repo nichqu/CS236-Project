@@ -1,6 +1,7 @@
 #pragma once
 
-class parser {
+
+class facts {
 
 
 

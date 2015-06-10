@@ -24,13 +24,19 @@
     <ClInclude Include="..\parameter.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\rule.h">
+    <ClInclude Include="..\datalog.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="datalog.h">
+    <ClInclude Include="..\facts.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="parser.h">
+    <ClInclude Include="..\queries.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\rules.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\schemes.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

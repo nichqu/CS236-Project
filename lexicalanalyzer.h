@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 #include <vector>
 #include <fstream>
@@ -5,7 +6,7 @@
 #include "token.h"
 
 using namespace std;
-enum states {start, period, comma, qmark, lparen, rparen, colon, colon_dash, SCHEMES, FACTS, RULES, QUERIES, ID, STRING, WHITESPACE, UNDEFINED, endn, COMMENT};
+//enum states {start, period, comma, qmark, lparen, rparen, colon, colon_dash, SCHEMES, FACTS, RULES, QUERIES, ID, STRING, WHITESPACE, UNDEFINED, endn, COMMENT};
 
 
 
@@ -35,7 +36,7 @@ class lexicalanalyzer {
 			if (cstate == start){
 				if (c == ','){
 					cstate = comma;
-					token *temp = new token("COMMA", ",", linenum);
+					token *temp = new token(comma, ",", linenum);
 					tokenlist.push_back(temp);
 					
 					//cout << tokenlist[tokens-1] << endl;
@@ -47,7 +48,7 @@ class lexicalanalyzer {
 				
 				else if (c == '.'){
 					cstate = period;
-					token *temp = new token("PERIOD", ".", linenum);
+					token *temp = new token(period, ".", linenum);
 					tokenlist.push_back(temp);
 					//cout << &tokenlist[tokens-1] << endl;
 					//cout << "(PERIOD,\".\"," << linenum << ")\n";
@@ -57,7 +58,7 @@ class lexicalanalyzer {
 
 				else if (c == '?'){
 					cstate = qmark;
-					token *temp = new token("Q-MARK", "?", linenum);
+					token *temp = new token(qmark, "?", linenum);
 					tokenlist.push_back(temp);
 					//cout << &tokenlist[tokens-1] << endl;
 					//cout << "(Q-MARK,\"?\"," << linenum << ")\n";
@@ -66,7 +67,7 @@ class lexicalanalyzer {
 				}
 				else if (c == '('){
 					cstate = lparen;
-					token *temp = new token("LEFT_PAREN", "(", linenum);
+					token *temp = new token(lparen, "(", linenum);
 					tokenlist.push_back(temp);
 					//cout << &tokenlist[tokens-1] << endl;
 					//cout << "(LEFT_PAREN,\"(\"," << linenum << ")\n";
@@ -75,7 +76,7 @@ class lexicalanalyzer {
 				}
 				else if (c == ')'){
 					cstate = rparen;
-					token *temp = new token("RIGHT_PAREN", ")", linenum);
+					token *temp = new token(rparen, ")", linenum);
 					tokenlist.push_back(temp);
 					//cout << &tokenlist[tokens-1] << endl;
 					//cout << "(RIGHT_PAREN,\")\"," << linenum << ")\n";
@@ -85,7 +86,7 @@ class lexicalanalyzer {
 				else if (c == ':'){
 					if (line[i + 1] == '-'){
 						cstate = colon_dash;
-						token *temp = new token("COLON_DASH", ":-", linenum);
+						token *temp = new token(colon_dash, ":-", linenum);
 						tokenlist.push_back(temp);
 						//cout << &tokenlist[tokens-1] << endl;
 						//cout << "(COLON_DASH,\":-\"," << linenum << ")\n";
@@ -95,7 +96,7 @@ class lexicalanalyzer {
 					}
 					else{
 						cstate = colon;
-						token *temp = new token("COLON", ":", linenum);
+						token *temp = new token(colon, ":", linenum);
 						tokenlist.push_back(temp);
 						//cout << &tokenlist[tokens-1] << endl;
 						//cout << "(COLON,\":\"," << linenum << ")\n";
@@ -160,12 +161,12 @@ class lexicalanalyzer {
 						cstate = STRING;
 					}
 					if (in.eof()){
-						token *temp = new token("UNDEFINED", temp1, templine);
+						token *temp = new token(UNDEFINED, temp1, templine);
 						tokenlist.push_back(temp);
 						//cout << "(UNDEFINED,\"" << temp1 << "\"," << templine << ")\n";
 						break;
 					}
-					token *temp = new token("STRING", temp1 , templine);
+					token *temp = new token(STRING, temp1 , templine);
 					tokenlist.push_back(temp);
 					//cout << "(STRING,\"" << temp1 << "\"," << templine << ")\n";
 					tokens++;
@@ -174,7 +175,7 @@ class lexicalanalyzer {
 				}
 
 				else if (c == '#'){
-					int templine;
+					int templine = 0;
 					string temp;
 					templine = linenum;
 					cstate = COMMENT;
@@ -227,7 +228,7 @@ class lexicalanalyzer {
 					}
 					if (temp == "Schemes"){
 						cstate = SCHEMES;
-						token *tempt = new token("SCHEMES", "Schemes" , linenum);
+						token *tempt = new token(SCHEMES, "Schemes" , linenum);
 						tokenlist.push_back(tempt);
 						//cout << "(SCHEMES,\"Schemes\"," << linenum << ")\n";
 						tokens++;
@@ -235,7 +236,7 @@ class lexicalanalyzer {
 					}
 					else if (temp == "Facts"){
 						cstate = FACTS;
-						token *tempt = new token("FACTS", "Facts", linenum);
+						token *tempt = new token(FACTS, "Facts", linenum);
 						tokenlist.push_back(tempt);
 						//cout << "(FACTS,\"Facts\"," << linenum << ")\n";
 						tokens++;
@@ -243,7 +244,7 @@ class lexicalanalyzer {
 					}
 					else if (temp == "Rules"){
 						cstate = RULES;
-						token *tempt = new token("RULES", "Rules", linenum);
+						token *tempt = new token(RULES, "Rules", linenum);
 						tokenlist.push_back(tempt);
 						//cout << "(RULES,\"Rules\"," << linenum << ")\n";
 						tokens++;
@@ -251,7 +252,7 @@ class lexicalanalyzer {
 					}
 					else if (temp == "Queries"){
 						cstate = QUERIES;
-						token *tempt = new token("QUERIES", "Queries", linenum);
+						token *tempt = new token(QUERIES, "Queries", linenum);
 						tokenlist.push_back(tempt);
 						//cout << "(QUERIES,\"Queries\"," << linenum << ")\n";
 						tokens++;
@@ -259,7 +260,7 @@ class lexicalanalyzer {
 					}
 					else{
 						cstate = ID;
-						token *tempt = new token("ID", temp , linenum);
+						token *tempt = new token(ID, temp , linenum);
 						tokenlist.push_back(tempt);
 						//cout << "(ID,\"" << temp << "\"," << linenum << ")\n";
 						tokens++;
@@ -272,7 +273,7 @@ class lexicalanalyzer {
 					string temp;
 					temp.push_back(c);
 					cstate = UNDEFINED;
-					token *tempt = new token("UNDEFINED", temp , linenum);
+					token *tempt = new token(UNDEFINED, temp , linenum);
 					tokenlist.push_back(tempt);
 					//cout << "(UNDEFINED,\"" << c << "\"," << linenum << ")\n";
 					tokens++;

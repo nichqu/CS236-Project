@@ -1,4 +1,6 @@
+#pragma once
 #include "lexicalanalyzer.h"
+#include "datalog.h"
 
 
 
@@ -10,6 +12,7 @@ int main(int argc, const char* argv[]){
 	
 	lexicalanalyzer analyzed;
 	vector<token*> tokenlist;
+	datalog parsed;
 
 	ifstream in;
 	//in.open(argv[1]);
@@ -20,8 +23,16 @@ int main(int argc, const char* argv[]){
 	};
 
 	analyzed.analyze(in, tokenlist);
-	
+	try {
+		
+		parsed.parse(tokenlist);
+	}
+	catch (int e) {
+		
+		cout << "Failure!\n";
+		tokenlist[e]->tostring();
 
+	}
 	in.close();
 	return 0;
 }

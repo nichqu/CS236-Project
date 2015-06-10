@@ -11,12 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\datalog.h" />
+    <ClInclude Include="..\facts.h" />
     <ClInclude Include="..\lexicalanalyzer.h" />
     <ClInclude Include="..\parameter.h" />
-    <ClInclude Include="..\rule.h" />
+    <ClInclude Include="..\queries.h" />
+    <ClInclude Include="..\rules.h" />
+    <ClInclude Include="..\schemes.h" />
     <ClInclude Include="..\token.h" />
-    <ClInclude Include="datalog.h" />
-    <ClInclude Include="parser.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\main.cpp" />
