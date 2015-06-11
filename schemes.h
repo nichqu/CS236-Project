@@ -8,6 +8,11 @@ private:
 	vector<string> schemenames;
 	
 
+public:
+
+	bool schemelist(token* tokens) {
+
+	}
 
 
 

@@ -12,7 +12,7 @@ int main(int argc, const char* argv[]){
 	
 	lexicalanalyzer analyzed;
 	vector<token*> tokenlist;
-	datalog parsed;
+	datalog parsed(tokenlist);
 
 	ifstream in;
 	//in.open(argv[1]);
@@ -25,7 +25,7 @@ int main(int argc, const char* argv[]){
 	analyzed.analyze(in, tokenlist);
 	try {
 		
-		parsed.parse(tokenlist);
+		parsed.parse();
 	}
 	catch (int e) {
 		

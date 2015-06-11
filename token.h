@@ -28,17 +28,7 @@ public:
 		
 	};
 	
-	bool match(states tname, vector<token*> &tokenlist) {
-
-		if (tname == tokenlist[ctoken]->name) {
-			ctoken++;
-			return true;
-		}
-		else {
-			throw ctoken;
-		}
-
-	}
+	
 	
 	
 	
