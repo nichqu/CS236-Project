@@ -12,7 +12,7 @@ int main(int argc, const char* argv[]){
 	
 	lexicalanalyzer analyzed;
 	vector<token*> tokenlist;
-	datalog parsed(tokenlist);
+	
 
 	ifstream in;
 	//in.open(argv[1]);
@@ -23,14 +23,14 @@ int main(int argc, const char* argv[]){
 	};
 
 	analyzed.analyze(in, tokenlist);
+	datalog parsed(tokenlist);
 	try {
 		
 		parsed.parse();
 	}
-	catch (int e) {
+	catch (string e) {
 		
-		cout << "Failure!\n";
-		tokenlist[e]->tostring();
+		cout << "Failure!\n" << e;
 
 	}
 	in.close();

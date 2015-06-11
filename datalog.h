@@ -5,43 +5,38 @@
 #include "queries.h"
 #include "token.h"
 #include <iterator>
+#include <vector>
 
 using namespace std;
-template <class type>
+
 class datalog {
 
 private:
-	schemes schemeobject;
-	facts factobject;
-	rules ruleobject;
-	queries queryobject;
-	int tokencount;
+
+	vector<token*>::iterator tokens;
 
 public:
-	datalog(vector<token*> &tokenlist) {
-		schemeobject = new schemes();
-		factobject = new facts();
-		ruleobject = new rules();
-		queryobject = new queries();
-		tokencount = 0;
-		iterator tokens = tokenlist.begin;
-	}
+	datalog (vector<token*> &tokenlist) {
+		tokens = tokenlist.begin();
+	};
 
-	bool match(states tname, tokens) {
+	void match(states tname, vector<token*>::iterator tokens) {
 
-		if (tname == temp->name) {
-			ctoken++;
-			return true;
+		if (tname == (*tokens)->name) {
+			++tokens;
+			
 		}
 		else {
-			throw tokens;
+			string temp = (*tokens)->tostring();
+			throw temp;
+			
 		}
 
 	}
 
 	void parse() {
 		match(SCHEMES, tokens);
-		match(colon, tokens)
+		match(colon, tokens);
 		
 
 

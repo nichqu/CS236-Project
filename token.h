@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <sstream>
 
 
 using namespace std;
@@ -9,7 +10,7 @@ const char* statenames[] = { "START", "PERIOD", "COMMA", "Q_MARK", "LEFT_PAREN",
 
 class token {
 private:
-	int ctoken = 0;
+	
 public:
 		states name;
 		string tokentype;
@@ -22,10 +23,14 @@ public:
 			
 		};
 	
-	void tostring(){
-	
-		cout << "(" << statenames[name] << ",\"" << tokentype << "\"," << linenum << ")\n"; 
-		
+	string tostring(){
+		stringstream os;
+		string temp;
+
+		os << "(" << statenames[name] << ",\"" << tokentype << "\"," << linenum << ")\n"; 
+		os >> temp;
+
+		return temp;
 	};
 	
 	
