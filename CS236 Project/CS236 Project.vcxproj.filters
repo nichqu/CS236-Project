@@ -21,9 +21,6 @@
     <ClInclude Include="..\token.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\parameter.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\datalog.h">
       <Filter>Source Files</Filter>
     </ClInclude>

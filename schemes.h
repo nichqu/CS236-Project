@@ -11,9 +11,15 @@ private:
 public:
 	schemes() {}
 	~schemes() {}
-	string tostring() {
+	void tostring() {
+		string schemestring;
+		for (int i = 0; i < list.size(); i++) {
 
+			schemestring += list[i];
 
+		}
+		cout << "Schemes(" << schemecount << "):\n" << schemestring;
+		//return schemestring;
 
 	}
 
@@ -35,7 +41,10 @@ public:
 			if (l_paren(tokens)) {
 				if (idlist) {
 					if (r_paren) {
+						
+						schemecount++;
 						return true;
+						
 					}
 				}
 			}

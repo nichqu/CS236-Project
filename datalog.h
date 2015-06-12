@@ -43,6 +43,18 @@ public:
 
 	}
 
+	string tostring() {
+		string dstring;
+
+		cout << "Success!\n";
+		schemeobject->tostring();
+		factobject->tostring();
+		ruleobject->tostring();
+		queryobject->tostring();
+
+	}
+
+
 	void parse() {
 		match(SCHEMES, tokens);
 		match(colon, tokens);
@@ -52,7 +64,7 @@ public:
 		}
 		
 
-
+		tostring();
 
 	};
 };
