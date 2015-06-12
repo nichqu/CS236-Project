@@ -13,12 +13,12 @@ private:
 	
 public:
 		states name;
-		string tokentype;
+		string value;
 		int linenum;
 
 		token(states iname, string ivalue, int iline){
 			name = iname;
-			tokentype = ivalue;
+			value = ivalue;
 			linenum = iline;
 			
 		};
@@ -27,7 +27,7 @@ public:
 		stringstream os;
 		string temp;
 
-		os << "(" << statenames[name] << ",\"" << tokentype << "\"," << linenum << ")\n"; 
+		os << "(" << statenames[name] << ",\"" << value << "\"," << linenum << ")\n"; 
 		os >> temp;
 
 		return temp;
