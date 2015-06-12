@@ -29,7 +29,7 @@ public:
 
 	};
 
-	void match(states tname, vector<token*>::iterator tokens) {
+	void match(states tname, vector<token*>::iterator& tokens) {
 
 		if (tname == (*tokens)->name) {
 			++tokens;
@@ -59,6 +59,10 @@ public:
 		match(SCHEMES, tokens);
 		match(colon, tokens);
 		if (!schemeobject->schemelist(tokens)) {
+			string temp = (*tokens)->tostring();
+			throw temp;
+		}
+		if (!factobject->factlist(tokens)) {
 			string temp = (*tokens)->tostring();
 			throw temp;
 		}

@@ -23,7 +23,7 @@ public:
 
 	}
 
-	bool schemelist(vector<token*>::iterator tokens) {
+	bool schemelist(vector<token*>::iterator &tokens) {
 		if (scheme(tokens)) {
 			if (schemelist(tokens)) {
 				return true;
@@ -35,12 +35,12 @@ public:
 		return false;
 	}
 
-	bool scheme(vector<token*>::iterator tokens) {
+	bool scheme(vector<token*>::iterator &tokens) {
 
 		if (identifier(tokens)) {
 			if (l_paren(tokens)) {
-				if (idlist) {
-					if (r_paren) {
+				if (idlist(tokens)) {
+					if (r_paren(tokens)) {
 						
 						schemecount++;
 						return true;
@@ -54,7 +54,7 @@ public:
 		return false;
 	}
 
-	bool identifier(vector<token*>::iterator tokens) {
+	bool identifier(vector<token*>::iterator &tokens) {
 
 		if (ID == (*tokens)->name) {
 			list.push_back((*tokens)->value);
@@ -68,7 +68,7 @@ public:
 		}
 	}
 
-	bool idlist(vector<token*>::iterator tokens) {
+	bool idlist(vector<token*>::iterator &tokens) {
 
 		if (identifier(tokens)) {
 			if (commafunc(tokens)) {
@@ -84,7 +84,7 @@ public:
 
 	}
 
-	bool l_paren(vector<token*>::iterator tokens) {
+	bool l_paren(vector<token*>::iterator &tokens) {
 		if (lparen == (*tokens)->name) {
 			list.push_back((*tokens)->value);
 			++tokens;
@@ -95,7 +95,7 @@ public:
 		return false;
 	}
 
-	bool r_paren(vector<token*>::iterator tokens) {
+	bool r_paren(vector<token*>::iterator &tokens) {
 
 		if (rparen == (*tokens)->name) {
 			list.push_back((*tokens)->value);
@@ -108,7 +108,7 @@ public:
 		return false;
 	}
 
-	bool commafunc(vector<token*>::iterator tokens) {
+	bool commafunc(vector<token*>::iterator& tokens) {
 		
 		if (comma == (*tokens)->name) {
 			list.push_back((*tokens)->value);
