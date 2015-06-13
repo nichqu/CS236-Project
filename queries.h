@@ -40,15 +40,39 @@ public:
 	bool query(vector<token*>::iterator &tokens) {
 
 		//wrong need predicate funtion....
-					if (predicates->predicatelist(tokens)) {
-						list.push_back(predicates->tostring());
-						querycount++;
-						return true;
+		if(predicatefunc(tokens)){
+			if(qmarkfunc(tokens)){
+			return true;
+			}
+		}		
+		//string temp = (*tokens)->tostring();
+		//throw temp;
+		return false;
+	}
+	
+	bool predicatefunc(vector<token*>::iterator &tokens){
+		
+		if (predicates->predicatelist(tokens)) {
+			list.push_back(predicates->tostring());
+			querycount++;
+			return true;
 
-					}
+		}
+		string temp = (*tokens)->tostring();
+		throw temp;
+	}
+	
+	bool qmark(vector<token*>::iterator &tokens){
+		
+		if (Q_MARK == (*tokens)->name) {
+			list.push_back((*tokens)->value);
+			++tokens;
+			return true;
+		}
 		string temp = (*tokens)->tostring();
 		throw temp;
 		return false;
+		
 	}
 
 	
