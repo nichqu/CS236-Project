@@ -35,7 +35,7 @@ public:
 	}
 
 	bool scheme(vector<token*>::iterator &tokens) {
-
+		list.push_back("  ");
 		if (identifier(tokens)) {
 			if (l_paren(tokens)) {
 				if (idlist(tokens)) {

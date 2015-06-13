@@ -45,7 +45,6 @@ public:
 
 	void tostring() {
 		
-
 		cout << "Success!\n";
 		schemeobject->tostring();
 		factobject->tostring();

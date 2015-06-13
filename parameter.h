@@ -16,6 +16,19 @@ public:
 	parameter(){}
 	~parameter(){}
 
+	string tostring() {
+
+		string schemestring;
+		for (int i = 0; i < list.size(); i++) {
+
+			schemestring += list[i];
+
+		}
+
+		return schemestring;
+
+	}
+
 	bool parameterlist(vector<token*>::iterator &tokens) {
 
 		if (Parameter(tokens)) {
