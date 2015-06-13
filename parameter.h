@@ -23,7 +23,8 @@ public:
 				if (parameterlist(tokens)) {
 					return true;
 				}
-			}			
+			}
+			
 		}
 		
 		return false;
@@ -32,8 +33,25 @@ public:
 
 	bool Parameter(vector<token*>::iterator &tokens) {
 
+		if (stringid(tokens)) {
 
+			return true;
 
+		}
+
+	}
+
+	bool stringid(vector<token*>::iterator &tokens) {
+
+		if (STRING == (*tokens)->name || ID == (*tokens)->name) {
+
+			list.push_back((*tokens)->value);
+			++tokens;
+			return true;
+		}
+		string temp = (*tokens)->tostring();
+		throw temp;
+		return false;
 	}
 
 	bool commafunc(vector<token*>::iterator& tokens) {
@@ -42,6 +60,11 @@ public:
 			list.push_back((*tokens)->value);
 			++tokens;
 			return true;
+		}
+		else if (STRING == (*tokens)->name || ID == (*tokens)->name || rparen == (*tokens)->name) {
+
+			return false;
+
 		}
 		string temp = (*tokens)->tostring();
 		throw temp;
