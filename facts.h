@@ -37,16 +37,15 @@ public:
 			if (l_paren(tokens)) {
 				if (stringlist(tokens)) {
 					if (r_paren(tokens)) {
-
-						factcount++;
-						return true;
-
+						if (periodfunc(tokens)) {
+							factcount++;
+							return true;
+						}
 					}
 				}
 			}
 		}
-		string temp = (*tokens)->tostring();
-		throw temp;
+		
 		return false;
 	}
 
@@ -88,8 +87,7 @@ public:
 			}
 			return true;
 		}
-		string temp = (*tokens)->tostring();
-		throw temp;
+		
 		return false;
 
 	}
@@ -129,6 +127,23 @@ public:
 		throw temp;
 		return false;
 	}
+
+	bool periodfunc(vector<token*>::iterator &tokens) {
+
+		if (period == (*tokens)->name) {
+			list.push_back((*tokens)->value);
+			++tokens;
+			return true;
+		}
+		else {
+
+			string temp = (*tokens)->tostring();
+			throw temp;
+			return false;
+
+		}
+	}
+
 
 
 };

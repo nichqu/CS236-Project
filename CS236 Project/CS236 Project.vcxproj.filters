@@ -39,6 +39,9 @@
     <ClInclude Include="..\predicates.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\parameter.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\main.cpp">

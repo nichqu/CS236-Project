@@ -43,8 +43,8 @@ public:
 
 	}
 
-	string tostring() {
-		string dstring;
+	void tostring() {
+		
 
 		cout << "Success!\n";
 		schemeobject->tostring();

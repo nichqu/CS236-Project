@@ -14,6 +14,7 @@
     <ClInclude Include="..\datalog.h" />
     <ClInclude Include="..\facts.h" />
     <ClInclude Include="..\lexicalanalyzer.h" />
+    <ClInclude Include="..\parameter.h" />
     <ClInclude Include="..\predicates.h" />
     <ClInclude Include="..\queries.h" />
     <ClInclude Include="..\rules.h" />

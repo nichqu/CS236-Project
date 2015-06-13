@@ -19,7 +19,7 @@ public:
 
 		}
 		cout << "Schemes(" << schemecount << "):\n" << schemestring;
-		//return schemestring;
+		//return schemestring;?
 
 	}
 
@@ -30,8 +30,7 @@ public:
 			}
 			return true;
 		}
-		string temp = (*tokens)->tostring();
-		throw temp;
+		
 		return false;
 	}
 
@@ -49,8 +48,7 @@ public:
 				}
 			}
 		}
-		string temp = (*tokens)->tostring();
-		throw temp;
+		
 		return false;
 	}
 
@@ -78,8 +76,7 @@ public:
 			}
 			return true;
 		}
-		string temp = (*tokens)->tostring();
-		throw temp;
+		
 		return false;
 
 	}
