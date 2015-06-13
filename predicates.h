@@ -16,6 +16,19 @@ public:
 	}
 	~predicate() {}
 
+	string tostring() {
+
+		string schemestring;
+		for (int i = 0; i < list.size(); i++) {
+
+			schemestring += list[i];
+
+		}
+
+		return schemestring;
+
+	}
+
 	bool predicatelist(vector<token*>::iterator tokens) {
 
 		if (predicatefunc(tokens)) {
