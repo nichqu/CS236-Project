@@ -37,6 +37,9 @@ public:
 					return true;
 				}
 			}
+			else if (rparen == (*tokens)->name) {
+				return true;
+			}
 			
 		}
 		

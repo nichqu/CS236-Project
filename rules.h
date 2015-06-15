@@ -1,12 +1,15 @@
 #pragma once
+#include "predicates.h"
 
 
 class rules {
 private:
 	int rulecount = 0;
 	vector<string> list;
+	predicate* predicates;
 public:
-
+	rules() { predicates = new predicate(); }
+	~rules() {}
 	void tostring() {
 		string rulestring;
 		for (int i = 0; i < list.size(); i++) {
@@ -31,17 +34,43 @@ public:
 
 	bool rule(vector<token*>::iterator &tokens) {
 
-		if (identifier(tokens)) {
-			if (l_paren(tokens)) {
-				if (idlist(tokens)) {
-					if (r_paren(tokens)) {
-
+		if (headpredicate(tokens)) {
+			if (colondash(tokens)) {
+				if (predicateslist(tokens)) {
+					if (periodfunc(tokens)) {
 						rulecount++;
 						return true;
-
 					}
 				}
+				string temp = (*tokens)->tostring();
+				throw temp;
+
 			}
+		}
+
+	}
+
+	bool predicateslist(vector<token*>::iterator &tokens) {
+
+		if (predicates->predicatelist(tokens)) {
+			list.push_back(predicates->tostring());
+			return true;
+
+		}
+		string temp = (*tokens)->tostring();
+		throw temp;
+
+	}
+
+	bool headpredicate(vector<token*>::iterator &tokens) {
+		
+		if (QUERIES == (*tokens)->name) {
+			return false;
+		}
+		else if (predicates->predicatelist(tokens)) {
+			list.push_back(predicates->tostring());
+			return true;
+
 		}
 		string temp = (*tokens)->tostring();
 		throw temp;
@@ -85,6 +114,9 @@ public:
 				}
 			}
 			return true;
+		}
+		else if (QUERIES == (*tokens)->name) {
+			return false;
 		}
 		string temp = (*tokens)->tostring();
 		throw temp;
@@ -132,6 +164,24 @@ public:
 
 		if (period == (*tokens)->name) {
 			list.push_back((*tokens)->value);
+			++tokens;
+			return true;
+		}
+		else {
+
+			string temp = (*tokens)->tostring();
+			throw temp;
+			return false;
+
+		}
+	}
+
+	bool colondash(vector<token*>::iterator &tokens) {
+
+		if (colon_dash == (*tokens)->name) {
+			list.push_back(" ");
+			list.push_back((*tokens)->value);
+			list.push_back(" ");
 			++tokens;
 			return true;
 		}

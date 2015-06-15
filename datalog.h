@@ -69,13 +69,16 @@ public:
 		}
 		match(RULES, tokens);
 		match(colon, tokens);
-
-
-
+		if (!ruleobject->rulelist(tokens)) {
+			string temp = (*tokens)->tostring();
+			throw temp;
+		}
 		match(QUERIES, tokens);
 		match(colon, tokens);
-		
-
+		if (!queryobject->querylist(tokens)) {
+			string temp = (*tokens)->tostring();
+			throw temp;
+		}
 		tostring();
 
 	};

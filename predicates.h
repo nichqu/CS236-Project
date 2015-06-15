@@ -29,7 +29,7 @@ public:
 
 	}
 
-	bool predicatelist(vector<token*>::iterator tokens) {
+	bool predicatelist(vector<token*>::iterator &tokens) {
 
 		if (predicatefunc(tokens)) {
 			if (commafunc(tokens)) {
@@ -43,7 +43,7 @@ public:
 	}
 
 
-	bool predicatefunc(vector<token*>::iterator tokens) {
+	bool predicatefunc(vector<token*>::iterator &tokens) {
 
 		if (identifier(tokens)) {
 			if (l_paren(tokens)) {
@@ -79,6 +79,16 @@ public:
 			++tokens;
 			return true;
 		}
+		else if (colon_dash == (*tokens)->name) {
+			return false;
+		}
+		else if (period == (*tokens)->name) {
+			return false;
+		}
+		else if (qmark == (*tokens)->name) {
+			return false;
+		}
+
 		string temp = (*tokens)->tostring();
 		throw temp;
 		return false;

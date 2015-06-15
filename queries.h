@@ -39,12 +39,13 @@ public:
 
 	bool query(vector<token*>::iterator &tokens) {
 
-		//wrong need predicate funtion....
-		if(predicatefunc(tokens)){
-			if(qmarkfunc(tokens)){
-			return true;
+		if (endn != (*tokens)->name) {
+			if (predicatefunc(tokens)) {
+				if (qmarkfunc(tokens)) {
+					return true;
+				}
 			}
-		}		
+		}
 		//string temp = (*tokens)->tostring();
 		//throw temp;
 		return false;

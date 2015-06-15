@@ -294,7 +294,8 @@ class lexicalanalyzer {
 		}
 	}
 
-	
+	token *tempt = new token(endn, "EOF", linenum);
+	tokenlist.push_back(tempt);
 	//cout << "(EOF,\"\"," << linenum << ")\n";
 	//cout << "Total Tokens = " << tokens << endl;
 	};
