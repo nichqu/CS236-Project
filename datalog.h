@@ -61,10 +61,19 @@ public:
 			string temp = (*tokens)->tostring();
 			throw temp;
 		}
+		match(FACTS, tokens);
+		match(colon, tokens);
 		if (!factobject->factlist(tokens)) {
 			string temp = (*tokens)->tostring();
 			throw temp;
 		}
+		match(RULES, tokens);
+		match(colon, tokens);
+
+
+
+		match(QUERIES, tokens);
+		match(colon, tokens);
 		
 
 		tostring();

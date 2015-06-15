@@ -32,7 +32,7 @@ public:
 	}
 
 	bool fact(vector<token*>::iterator &tokens) {
-		list.push_back("  ");
+		if (ID == (*tokens)->name) { list.push_back("  "); }
 		if (identifier(tokens)) {
 			if (l_paren(tokens)) {
 				if (stringlist(tokens)) {
@@ -69,6 +69,9 @@ public:
 			list.push_back((*tokens)->value);
 			++tokens;
 			return true;
+		}
+		else if (RULES == (*tokens)->name) {
+			return false;
 		}
 		else {
 			string temp = (*tokens)->tostring();
@@ -122,6 +125,9 @@ public:
 			list.push_back((*tokens)->value);
 			++tokens;
 			return true;
+		}
+		else if (rparen == (*tokens)->name) {
+			return false;
 		}
 		string temp = (*tokens)->tostring();
 		throw temp;

@@ -62,9 +62,9 @@ public:
 		throw temp;
 	}
 	
-	bool qmark(vector<token*>::iterator &tokens){
+	bool qmarkfunc(vector<token*>::iterator &tokens){
 		
-		if (Q_MARK == (*tokens)->name) {
+		if (qmark == (*tokens)->name) {
 			list.push_back((*tokens)->value);
 			++tokens;
 			return true;
