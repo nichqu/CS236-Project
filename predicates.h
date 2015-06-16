@@ -24,7 +24,7 @@ public:
 			schemestring += list[i];
 
 		}
-
+		list.clear();
 		return schemestring;
 
 	}
@@ -110,7 +110,6 @@ public:
 		if (rparen == (*tokens)->name) {
 			list.push_back((*tokens)->value);
 			++tokens;
-			list.push_back("\n");
 			return true;
 		}
 		string temp = (*tokens)->tostring();

@@ -50,7 +50,7 @@ public:
 		factobject->tostring();
 		ruleobject->tostring();
 		queryobject->tostring();
-
+		factobject->domaintostring();
 	}
 
 

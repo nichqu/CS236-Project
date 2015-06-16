@@ -1,23 +1,42 @@
 #pragma once
+#include <list>
+#include <string>
 
+using namespace std;
 
 class facts {
 private:
 	int factcount = 0;
-	vector<string> list;
+	int domaincount = 0;
+	vector<string> mylist;
+	list<string> domainlist;
 
 public:
 
 	void tostring() {
 		string factstring;
-		for (int i = 0; i < list.size(); i++) {
+		for (int i = 0; i < mylist.size(); i++) {
 
-			factstring += list[i];
+			factstring += mylist[i];
 
 		}
 		cout << "Facts(" << factcount << "):\n" << factstring;
 		//return schemestring;
 
+	}
+
+	void domaintostring() {
+
+		string domainstring;
+		domainlist.sort();
+		for (int i = 0; i < domaincount; i++) {
+
+			domainstring += domainlist.front();
+			domainstring += "\n";
+			domainlist.pop_front();
+
+		}
+		cout << "Domain(" << domaincount << "):\n" << domainstring;
 	}
 
 	bool factlist(vector<token*>::iterator &tokens) {
@@ -32,7 +51,9 @@ public:
 	}
 
 	bool fact(vector<token*>::iterator &tokens) {
-		if (ID == (*tokens)->name) { list.push_back("  "); }
+
+		if (ID == (*tokens)->name) { mylist.push_back("  "); }
+
 		if (identifier(tokens)) {
 			if (l_paren(tokens)) {
 				if (stringlist(tokens)) {
@@ -52,7 +73,9 @@ public:
 	bool fstring(vector<token*>::iterator &tokens) {
 		//add to domain
 		if (STRING == (*tokens)->name) {
-			list.push_back((*tokens)->value);
+			mylist.push_back((*tokens)->value);
+			domainlist.push_back((*tokens)->value);
+			domaincount++;
 			++tokens;
 			return true;
 		}
@@ -66,7 +89,7 @@ public:
 	bool identifier(vector<token*>::iterator &tokens) {
 
 		if (ID == (*tokens)->name) {
-			list.push_back((*tokens)->value);
+			mylist.push_back((*tokens)->value);
 			++tokens;
 			return true;
 		}
@@ -97,7 +120,7 @@ public:
 
 	bool l_paren(vector<token*>::iterator &tokens) {
 		if (lparen == (*tokens)->name) {
-			list.push_back((*tokens)->value);
+			mylist.push_back((*tokens)->value);
 			++tokens;
 			return true;
 		}
@@ -109,9 +132,8 @@ public:
 	bool r_paren(vector<token*>::iterator &tokens) {
 
 		if (rparen == (*tokens)->name) {
-			list.push_back((*tokens)->value);
+			mylist.push_back((*tokens)->value);
 			++tokens;
-			list.push_back("\n");
 			return true;
 		}
 		string temp = (*tokens)->tostring();
@@ -122,7 +144,7 @@ public:
 	bool commafunc(vector<token*>::iterator& tokens) {
 
 		if (comma == (*tokens)->name) {
-			list.push_back((*tokens)->value);
+			mylist.push_back((*tokens)->value);
 			++tokens;
 			return true;
 		}
@@ -137,7 +159,8 @@ public:
 	bool periodfunc(vector<token*>::iterator &tokens) {
 
 		if (period == (*tokens)->name) {
-			list.push_back((*tokens)->value);
+			mylist.push_back((*tokens)->value);
+			mylist.push_back("\n");
 			++tokens;
 			return true;
 		}
@@ -149,7 +172,5 @@ public:
 
 		}
 	}
-
-
 
 };

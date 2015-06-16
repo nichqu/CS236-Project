@@ -24,7 +24,7 @@ public:
 			schemestring += list[i];
 
 		}
-
+		list.clear();
 		return schemestring;
 
 	}

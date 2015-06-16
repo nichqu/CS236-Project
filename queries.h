@@ -67,6 +67,7 @@ public:
 		
 		if (qmark == (*tokens)->name) {
 			list.push_back((*tokens)->value);
+			list.push_back("\n");
 			++tokens;
 			return true;
 		}

@@ -140,7 +140,6 @@ public:
 		if (rparen == (*tokens)->name) {
 			list.push_back((*tokens)->value);
 			++tokens;
-			list.push_back("\n");
 			return true;
 		}
 		string temp = (*tokens)->tostring();
@@ -164,6 +163,7 @@ public:
 
 		if (period == (*tokens)->name) {
 			list.push_back((*tokens)->value);
+			list.push_back("\n");
 			++tokens;
 			return true;
 		}
