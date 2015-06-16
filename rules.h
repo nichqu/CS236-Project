@@ -22,6 +22,10 @@ public:
 
 	}
 	bool rulelist(vector<token*>::iterator &tokens) {
+		
+		if (QUERIES == (*tokens)->name) {
+			return true;
+		}
 		if (rule(tokens)) {
 			if (rulelist(tokens)) {
 				return true;
@@ -47,7 +51,7 @@ public:
 
 			}
 		}
-
+		return true;
 	}
 
 	bool predicateslist(vector<token*>::iterator &tokens) {
@@ -64,10 +68,7 @@ public:
 
 	bool headpredicate(vector<token*>::iterator &tokens) {
 		
-		if (QUERIES == (*tokens)->name) {
-			return false;
-		}
-		else if (predicates->predicatelist(tokens)) {
+		if (predicates->predicatelist(tokens)) {
 			list.push_back(predicates->tostring());
 			return true;
 
@@ -97,6 +98,9 @@ public:
 			list.push_back((*tokens)->value);
 			++tokens;
 			return true;
+		}
+		if (QUERIES == (*tokens)->name) {
+			return false;
 		}
 		else {
 			string temp = (*tokens)->tostring();
