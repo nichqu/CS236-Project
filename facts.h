@@ -40,6 +40,10 @@ public:
 	}
 
 	bool factlist(vector<token*>::iterator &tokens) {
+
+		if (RULES == (*tokens)->name) {
+			return true;
+		}
 		if (fact(tokens)) {
 			if (factlist(tokens)) {
 				return true;
